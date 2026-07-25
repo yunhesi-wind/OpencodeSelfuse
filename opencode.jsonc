@@ -57,14 +57,10 @@
         "FIREBASE_CONFIG": "{env:FIREBASE_CONFIG}"
       }
     },
-    "terraform": {
-      "type": "local",
-      "command": ["npx", "-y", "terraform-mcp-server"],
-      "enabled": true
-    },
     "serena": {
       "type": "local",
-      "command": ["serena", "mcp", "start"],
+      "command": ["serena-agent", "start-mcp-server"],
       "enabled": true
     }
+  }
 }
