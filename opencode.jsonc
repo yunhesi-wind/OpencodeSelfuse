@@ -64,13 +64,7 @@
     },
     "serena": {
       "type": "local",
-      "command": ["uvx", "serena-mcp-server"],
-      "enabled": false
-    },
-    "laravel-boost": {
-      "type": "local",
-      "command": ["npx", "-y", "laravel-boost-mcp"],
-      "enabled": false
+      "command": ["serena", "mcp", "start"],
+      "enabled": true
     }
-  }
 }
