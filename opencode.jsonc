@@ -1,0 +1,76 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "github": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "enabled": true,
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_TOKEN}"
+      }
+    },
+    "gitlab": {
+      "type": "local",
+      "command": ["npx", "-y", "@yoda.digital/gitlab-mcp-server"],
+      "enabled": true,
+      "environment": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_TOKEN}",
+        "GITLAB_API_URL": "https://jihulab.com/api/v4"
+      }
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp"],
+      "enabled": true
+    },
+    "asana": {
+      "type": "local",
+      "command": ["npx", "-y", "@blzvi/asana-mcp-server"],
+      "enabled": true,
+      "environment": {
+        "ASANA_ACCESS_TOKEN": "{env:ASANA_ACCESS_TOKEN}"
+      }
+    },
+    "linear": {
+      "type": "local",
+      "command": ["npx", "-y", "linear-mcp-server"],
+      "enabled": true,
+      "environment": {
+        "LINEAR_API_KEY": "{env:LINEAR_API_KEY}"
+      }
+    },
+    "firebase": {
+      "type": "local",
+      "command": ["npx", "-y", "@gannonh/firebase-mcp"],
+      "enabled": false,
+      "environment": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "{env:GOOGLE_APPLICATION_CREDENTIALS}",
+        "FIREBASE_CONFIG": "{env:FIREBASE_CONFIG}"
+      }
+    },
+    "terraform": {
+      "type": "local",
+      "command": ["npx", "-y", "terraform-mcp-server"],
+      "enabled": true
+    },
+    "serena": {
+      "type": "local",
+      "command": ["uvx", "serena-mcp-server"],
+      "enabled": false
+    },
+    "laravel-boost": {
+      "type": "local",
+      "command": ["npx", "-y", "laravel-boost-mcp"],
+      "enabled": false
+    }
+  }
+}
