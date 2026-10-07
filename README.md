@@ -124,6 +124,23 @@ if (Test-Path (Join-Path $configRoot 'skills')) {
 Copy-Item -Recurse .\skills (Join-Path $configRoot 'skills')
 ```
 
+## 桌面端 DS 美化（独立项目）
+
+已整理为独立公开源码仓库：
+[opencode-desktop-ds-theme](https://github.com/yunhesi-wind/opencode-desktop-ds-theme)。
+
+- 深海女仆动态背景、透明顶栏、深蓝玻璃菜单和提问／权限面板。
+- 半透明消息气泡和代码区；保留气泡发送状态变化、原生图标尺寸与差异状态。
+- 版本／哈希／原生文件校验，原子 manifest 与备份发布，失败重试及独立恢复入口。
+- 当前仅对 Windows OpenCode Desktop **2.0.24** 验收，不是官方插件，不支持跨版本恢复。
+- 只发布源码；背景视频由用户确认权限后自行下载校验，应用包和备份仅在本机生成。
+- 基于 daemon1s/opencode-deepseek-chan，保留原作者 MIT 署名；素材许可单独说明。
+- 由 yunhesi-wind 维护，含 OpenAI GPT AI 辅助贡献，详见主题仓库声明。
+
+在独立仓库执行 `npm ci --ignore-scripts`，按 README 下载素材后 `node deploy.cjs prepare`；
+保存工作并完全退出桌面版，再运行 `Install-Theme.cmd`。异常时退出后运行 `Restore-Theme.cmd`。
+**不要将主题包、视频、备份或个人截图加入本配置仓库。**
+
 ## 环境变量
 
 按需设置以下变量。变量值只存在于本机环境，不应提交到 Git：
