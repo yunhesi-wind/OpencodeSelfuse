@@ -1,6 +1,6 @@
 # OpenCode Skills 索引
 
-> 更新日期：2026-08-30
+> 更新日期：2026-10-07
 >
 > 范围：本仓库 `skills/` 目录中的 OpenCode Skills，共 49 个。
 
@@ -8,17 +8,20 @@
 
 ## 来源与发现
 
-Skills 由 `opencode.jsonc` 中的 `skills.paths` 指定：
+本仓库 `skills/` 作为技能记录副本。实际使用推荐复制到 `~/.config/opencode/skills/`，由 OpenCode 自动发现。
+全局目录无需在配置中重复指定；本仓库 `opencode.jsonc` 仅维护 MCP，不再使用依赖工作目录的相对技能路径。
+
+如果需要显式添加额外来源，使用 V2 数组语法：
 
 ```jsonc
 {
-  "skills": {
-    "paths": ["./skills"]
-  }
+  "skills": ["~/shared/opencode-skills"]
 }
 ```
 
-OpenCode 启动后扫描该目录下的 skill 子目录。每个 skill 通过 `SKILL.md` 的 YAML frontmatter 声明 `name` 和 `description`，模型根据任务描述选择是否加载对应工作流。
+OpenCode 启动后扫描全局目录下的 skill 子目录。每个 skill 通过 `SKILL.md` 的 YAML frontmatter 声明显示名称和触发描述，
+技能 ID 由目录名决定，模型根据 `description` 和任务选择是否加载工作流。
+技能内容及分类未改变；全局副本与记录副本需要手动同步，见 [`GLOBAL-SKILLS.md`](GLOBAL-SKILLS.md)。
 
 ## Skills 清单
 
