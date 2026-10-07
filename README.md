@@ -143,6 +143,23 @@ Copy-Item -Recurse .\skills (Join-Path $configRoot 'skills')
 保存工作并完全退出桌面版，再运行 `Install-Theme.cmd`。异常时退出后运行 `Restore-Theme.cmd`。
 **不要将主题包、视频、备份或个人截图加入本配置仓库。**
 
+## CLI 与 Windows Terminal DS 美化（独立项目）
+
+独立公开源码仓库：
+[opencode-cli-ds-theme](https://github.com/yunhesi-wind/opencode-cli-ds-theme)。
+
+- 完整 V2 `ds-maid` 深蓝透明 CLI 主题，Windows Terminal 全局玻璃外壳及默认壁纸。
+- 普通 PowerShell 在 Windows Terminal 中直接运行 `opencode` 也有背景；传统 conhost 不支持。
+- 保留原有 profile 命令、工作目录、字体、快捷键与默认 profile 选择；显式外观覆盖仍优先。
+- 额外提供独立 `OpenCode DS` profile，备份／恢复及变更冲突保护。
+- 本机验收 CLI 2.0.24、Windows Terminal 1.25；Mica 需要 Windows 11 build >=22621。
+- 静态背景从深海女仆视频提取，素材许可独立声明；只发布源码，不上传图片、个人配置或恢复记录。
+- 官方模板 MIT 许可保留，由 yunhesi-wind 维护，含 OpenAI GPT 辅助贡献。
+
+首次克隆后 `npm ci --ignore-scripts`，按仓库 README 下载并校验素材、提取静态帧；
+执行 `node build-theme.cjs`，再双击 `Install-Theme.cmd`。
+不修改 CLI 可执行文件、桌面主题、模型、MCP 或 skills；实际终端效果需要本机验收。
+
 ## 环境变量
 
 按需设置以下变量。变量值只存在于本机环境，不应提交到 Git：
