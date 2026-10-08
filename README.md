@@ -134,13 +134,14 @@ Copy-Item -Recurse .\skills (Join-Path $configRoot 'skills')
 - 当前主题版本 1.0.1：摘要面板、二级选择菜单与左上角菜单／子菜单统一 **60% 不透明度**；提问浮层 48%、代码底色 32%、已发送消息白灰底 62%。
 - 显式覆盖摘要面板 `.session-summary-popover` 的原生透明底色，避免正文透出导致重叠。
 - 版本／哈希／原生文件校验，原子 manifest 与备份发布，失败重试及独立恢复入口。
-- 当前仅对 Windows OpenCode Desktop **2.0.24** 验收，不是官方插件，不支持跨版本恢复。
+- 支持 Windows OpenCode Desktop **2.0.24 / 2.0.25**；2.0.25 已完成资源构建校验，视觉效果需安装后验收。不是官方插件，不支持跨版本恢复。
 - 只发布源码；背景视频由用户确认权限后自行下载校验，应用包和备份仅在本机生成。
 - 基于 daemon1s/opencode-deepseek-chan，保留原作者 MIT 署名；素材许可单独说明。
 - 由 yunhesi-wind 维护，含 OpenAI GPT AI 辅助贡献，详见主题仓库声明。
 
 在独立仓库执行 `npm ci --ignore-scripts`，按 README 下载素材后 `node deploy.cjs prepare`；
 保存工作并完全退出桌面版，再运行 `Install-Theme.cmd`。异常时退出后运行 `Restore-Theme.cmd`。
+从 2.0.24 更新到 2.0.25 后，在主题仓库运行 `node deploy.cjs prepare --upgrade`，成功后安装；也可退出桌面版后运行 `Upgrade-Theme.cmd`。
 **不要将主题包、视频、备份或个人截图加入本配置仓库。**
 
 ## CLI 与 Windows Terminal DS 美化（独立项目）
