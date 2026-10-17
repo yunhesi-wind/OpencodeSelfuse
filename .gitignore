@@ -1,0 +1,2 @@
+# Machine-specific integration checks must not be published.
+tests/*.local.cjs

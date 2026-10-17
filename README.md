@@ -116,7 +116,8 @@ git clone https://github.com/yunhesi-wind/OpencodeSelfuse.git
 全局 skills 安装（在仓库根目录运行；如目标目录已存在，先检查并备份，不要盲目覆盖）：
 
 ```powershell
-$configRoot = Join-Path $HOME '.config/opencode'
+$configBase = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { Join-Path $HOME '.config' }
+$configRoot = Join-Path $configBase 'opencode'
 New-Item -ItemType Directory -Path $configRoot -Force | Out-Null
 if (Test-Path (Join-Path $configRoot 'skills')) {
   throw '全局 skills 已存在，请先检查并备份，再按技能目录更新。'
@@ -208,6 +209,10 @@ CLI 美化主项目：`D:\project\AI_test\opencodeCli美化`。
 ```powershell
 node --test .\tests\config-portability.test.cjs
 ```
+
+全部可移植回归检查：`node --test ./tests/*.test.cjs`。其中跨主题仓库检查仅在本机存在相邻独立项目时执行，否则明确跳过。
+
+`tests/*.local.cjs` 仅作为本机私有检查，不提交 GitHub，也不属于上述离线测试集。此类检查必须显式开启才能执行，可能启动真实 MCP 进程、访问网络并使用个人凭据；不得把连接测试描述为无副作用的离线检查。
 
 官方参考：[配置](https://opencode.ai/v2/docs/config)、[MCP](https://opencode.ai/v2/docs/mcp-servers)、
 [Skills](https://opencode.ai/v2/docs/skills)、[迁移兼容](https://opencode.ai/v2/docs/migrate-v1)。

@@ -6,6 +6,11 @@ const { test } = require('node:test');
 const root = path.resolve(__dirname, '..');
 const config = JSON.parse(fs.readFileSync(path.join(root, 'opencode.jsonc'), 'utf8'));
 
+test('machine-specific integration checks are excluded from publication', () => {
+  const ignore = fs.readFileSync(path.join(root, '.gitignore'), 'utf8');
+  assert.match(ignore, /^tests\/\*\.local\.cjs\s*$/m);
+});
+
 test('MCP template uses native V2 fields and preserves enablement', () => {
   assert.equal(config.$schema, 'https://opencode.ai/config.json');
   assert.equal(config.skills, undefined);

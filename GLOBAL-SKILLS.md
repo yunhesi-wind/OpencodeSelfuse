@@ -69,5 +69,6 @@ web_dashboard_interface: browser
 ## 验证
 
 离线格式与目录检查：`node --test ./tests/config-portability.test.cjs`。
+全部可移植检查：`node --test ./tests/*.test.cjs`。本机私有检查使用 `tests/*.local.cjs`，不上传 GitHub，不纳入离线测试集，且必须显式开启；连接验证可能启动 MCP 进程、使用个人凭据并访问网络。
 本机连接验证：在目标项目执行 `opencode mcp list`、`opencode models`；
 不同目录下的服务范围可能不同，能列出模型也不证明模型接口全部能力已经验证。
