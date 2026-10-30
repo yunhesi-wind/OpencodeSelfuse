@@ -128,22 +128,18 @@ Copy-Item -Recurse .\skills (Join-Path $configRoot 'skills')
 ## 桌面端 DS 美化（独立项目）
 
 独立源码仓库：[opencode-desktop-ds-theme](https://github.com/yunhesi-wind/opencode-desktop-ds-theme)。
-本机项目：`D:\project\AI_test\opencode桌面端ds美化`。本仓库只存描述和链接，不保存主题副本、素材、应用包或备份。
+本机项目：`D:\project\AI_test\opencode桌面端ds美化-plugin`。本仓库只存描述和链接，不保存主题副本、素材或构建产物。
 
-当前方案为 **2.0.0「深海大肥鱼」可选主题**，只支持 Windows Desktop **2.0.32**，内部 ID `ds-deepsea` 保持不变。用户已安装并确认选择和名称生效；旧全局美化与实验双入口已合并移除，不代表所有设备及状态组合都已验收。
+当前方案为 **3.0.0 官方 GUI 插件**（`./gui-experimental`），不再修改 `app.asar`，官方更新不会覆盖补丁。
 
-- 在设置 → 外观 → 主题中启用；选择其他主题时停用全部 DS 附加样式、暂停并释放背景视频。不改用户保存的模式偏好，DS 本身按深色解析。
-- 深蓝玻璃菜单、动态背景、白灰消息气泡及局部滚动条；文件／差异视图采用深蓝底、蓝灰行号、琥珀搜索和可读红绿强调。只改美术，不改按钮几何、布局、交互或 UI 动画。
-- 保留技能原生悬停提示、历史会话文字叠背景及 Ghostty 终端原生画布；不为原生文件树／审查布局问题添加美化修补。
-- 对话正文工具组及编辑／写入／补丁标题已移除额外不透明覆盖，避免展开时出现深蓝横条；审查汇总和差异标题底色保留，当前安装哈希已核对生效。
-- 仍是非官方 ASAR 补丁，不是公开主题插件接口；官方更新后需适配，未知版本及跨版本恢复拒绝。
-- 只发布源码；保留上游 MIT 许可和独立素材声明，含 OpenAI GPT 辅助贡献。
+- 安装：把插件目录放在固定位置，在全局 `opencode.jsonc` 的 `plugins` 中加入该目录的绝对路径；**完全退出桌面端再打开**；设置 → **深海皮肤** 打开「启用颜色皮肤」。
+- 只注入颜色类 CSS（`color`、`background-*`、`border-*-color`、`box-shadow`、`outline-color`、`scrollbar-color` 与审计过的颜色变量）；构建期 PostCSS 门禁拒绝 `width/padding/position/transform/font/overflow/z-index` 等一切可能影响布局的属性。
+- 背景画在 `html` 上，不新增节点、不影响文档流；视频背景是唯一例外（`position: fixed` + `pointer-events: none` + `inert`），窗口不可见时自动暂停。
+- 需要官方**深色模式**；首版不含实时模糊（`backdrop-filter` 会创建包含块）。GUI 插件 API 仍标记 experimental，官方大版本升级后需重新确认加载状态与配色。
+- 布局验收用仓库内 `DSLayout.js` 在 DevTools 做前后快照 diff，要求 0 像素差异；不以截图替代。
+- 仓库发布源码、构建产物 `dist/` 与说明；背景素材 `assets/` 不入库。`npm run build` 默认内嵌原片，`DS_VIDEO_COMPRESS=1` 时输出 720p 轻量版。
 
-在主题仓库安装依赖、确认素材权限并下载校验后，运行 `node deploy.cjs prepare`，保存工作并退出桌面端再 `node deploy.cjs install`；或退出后双击唯一的安装／更新入口 `Install-Theme.cmd`（`prepare --upgrade` 后安装）。同版本主题更新不再需要先回退；官方更新仍须等待明确适配，参数不放行未知版本。不另设重复的更新脚本。
-
-`node deploy.cjs status` 查看状态；只关闭美化可切换主题。要卸载补丁，退出桌面端后用 `Restore-Theme.cmd` 或 `node deploy.cjs restore` 恢复**官方原版**，不回退旧全局美化。当前记录和输出位于主题项目 `runtime/`，官方原包与恢复 metadata 位于 `backups/`，必须保留。
-
-每次更新先验证主题与文档，再同步本节，确认完成后分别提交并推送两仓库；CLI 美化独立更新。详细步骤、恢复边界与测试说明以主题仓库 README 为准。
+每次更新先验证插件与文档，再同步本节，确认完成后分别提交并推送两仓库；CLI 美化独立更新。详细步骤、构建与验收说明以主题仓库 README 为准。
 
 ## CLI DS 美化（独立项目）
 
